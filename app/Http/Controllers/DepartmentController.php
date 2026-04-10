@@ -26,4 +26,44 @@ class DepartmentController extends Controller
 
         ], 201);
     }
+
+    public function update(Request $request, $id) {
+        $department = Department::find($id);
+
+        if(!$department) {
+            return response()->json([
+                'message' => 'Department not found'
+            ], 404);
+        }
+
+        $request->validate([
+            'department' => 'required|string|max:255'
+        ]);
+
+        $department->update([
+            'department' => $request->department
+        ]);
+
+        return response()->json([
+            'message' => 'department successfully updated',
+            'data' => $department
+        ]);
+    }
+
+    public function destroy($id) {
+        $department = Department::find($id);
+
+        if(!$department){
+            return respons()->json([
+                'message' => 'Department not found'
+            ], 404);
+        }
+
+        $department->delete();
+
+        return response()->json([
+            'message' => 'Department deleted successfully'
+        ]);
+    
+    }
 }

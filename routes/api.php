@@ -13,4 +13,6 @@ Route::get('/programs', [ProgramController::class, 'index']);
 Route::post('/programs', [ProgramController::class, 'store']);
 Route::get('/programs', [DropdownController::class, 'programs']);
 Route::get('/faculties', [DropdownController::class, 'faculties']);
-Route::get('departments', [DropdownController::class, 'departments']);
+Route::get('/departments', [DropdownController::class, 'departments']);
+Route::put('/departments/{$id}', [DepartmentController::class, 'update']);
+Route::delete('/department/{$id}', [DepartmentController::class, 'destroy']);
