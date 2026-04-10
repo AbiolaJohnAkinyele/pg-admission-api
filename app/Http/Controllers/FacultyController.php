@@ -25,5 +25,45 @@ class FacultyController extends Controller
             'data' => $faculty
         ], 201);
     }
+
+    public function update(Request $request, $id) {
+        $faculty = Faculty::find($id);
+
+        if(!$faculty) {
+            return response()->json([
+                'message' => 'Faculty not found'
+            ], 404);
+        }
+
+        $request->validate([
+            'faculty' => 'required|string|max:255'
+        ]);
+
+        $faculty->update([
+            'faculty' => $request->faculty
+        ]);
+
+        return response()->json([
+            'message' => 'faculty successfully updated',
+            'data' => $faculty
+        ]);
+    }
+
+    public function destroy($id) {
+        $faculty = Faculty::find($id);
+
+        if(!$faculty){
+            return respons()->json([
+                'message' => 'Faculty not found'
+            ], 404);
+        }
+
+        $faculty->delete();
+
+        return response()->json([
+            'message' => 'Faculty deleted successfully'
+        ]);
+    
+    }
 }
 
