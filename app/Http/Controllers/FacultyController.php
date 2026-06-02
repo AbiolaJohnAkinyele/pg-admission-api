@@ -53,7 +53,7 @@ class FacultyController extends Controller
         $faculty = Faculty::find($id);
 
         if(!$faculty){
-            return respons()->json([
+            return response()->json([
                 'message' => 'Faculty not found'
             ], 404);
         }

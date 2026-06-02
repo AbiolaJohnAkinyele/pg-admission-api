@@ -15,7 +15,7 @@ class DropdownController extends Controller
     }
 
     public function faculties() {
-        return respons()->json(Faculty::all());
+        return response()->json(Faculty::all());
     }
 
     public function departments() {
